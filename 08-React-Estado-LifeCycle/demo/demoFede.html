@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Henry - Demo LifeCycle</title>
+</head>
+<body>
+  <div id='app'></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+
+    //==================================================================================
+
+    class Prueba extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                amigo: ""
+            }
+        }
+        render(){
+            return(
+                <div>
+                    <input type="text" 
+                    placeholder="Ingresar amigo..." 
+                    value={this.state.amigo}
+                    onChange={e => this.setState({amigo: e.target.value})}
+                    />
+                    <button onClick={()=>this.props.addFriend(this.state.amigo)}>Agregar</button>                    
+                </div>
+            )
+        }
+    }
+//--------------------------------
+    class Contador extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                contador: this.props.contador,
+                amigos: ['Franco']
+            }
+            this.addFriend = this.addFriend.bind(this);
+        }
+
+        addFriend(amigo){
+            this.setState(prev=>{
+                return{
+                    amigos: [...this.state.amigos, amigo]
+                }
+            })
+        }
+        render(){
+            return(
+                <Prueba addFriend = {this.addFriend}/>  //renderiza <Prueba/> , es el componente padre
+            )
+        }
+    };
+    ReactDOM.render(<Contador contador={0} />, document.getElementById('app'));
+
+  </script>
+</body>
+</html>

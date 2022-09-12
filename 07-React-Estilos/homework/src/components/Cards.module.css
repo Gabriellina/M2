@@ -1,0 +1,6 @@
+.divCards{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* wrap: flex items will wrap onto multiple lines, from top to bottom.*/
+
+}
