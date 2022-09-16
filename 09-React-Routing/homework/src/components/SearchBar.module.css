@@ -1,0 +1,15 @@
+
+
+.inputStyle{
+   
+    border-radius: 5px;    
+    height: 34px;
+}
+.btnSearch{
+    border-radius: 5px;
+    background-color: rgb(96, 91, 91);
+    color: rgb(113, 222, 113);
+    border: 2px solid rgb(113, 222, 113);
+    margin-left: 3px;
+
+}

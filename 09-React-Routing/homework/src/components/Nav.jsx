@@ -1,21 +1,25 @@
-import React from 'react';
-import Logo from '../img/logoHenry.png'
-import SearchBar from './SearchBar.jsx';
-import './Nav.css';
+import React from "react";
+import {Link} from 'react-router-dom';
+import SearchBar from "./SearchBar";
+import s from './Nav.module.css';
+//import About from './About.jsx';
 
 
-function Nav({onSearch}) {
-  return (
-    <nav className="navbar navbar-dark bg-dark">
-        <span className="navbar-brand">
-          <img id="logoHenry" src={Logo} width="30" height="30" className="d-inline-block align-top" alt="" />
-          Henry - Weather App
-        </span>
-        <SearchBar
-          onSearch={onSearch}
-        />
-    </nav>
-  );
-};
+export default function Nav({onSearch}){
+  return(
 
-export default Nav;
+<div className={s.navBar}>
+  
+  <div>
+    <Link to='/'>
+      <img src={require('../img/logoHenry.png').default} alt="img not found" />
+      <span className={s.spanNavBar}>Henry weather app</span>
+    </Link>
+    <Link to='/about'>
+      <span>About</span>
+    </Link>
+  </div>
+  <SearchBar onSearch={onSearch}/> {/* pasamano, aqui le pasamos la f(x) que recibimos de App a SearchBar */}
+</div>
+)
+}

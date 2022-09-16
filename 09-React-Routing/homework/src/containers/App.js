@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
+ import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
 import Nav from '../components/Nav.jsx';
 import Cards from '../components/Cards.jsx';
+import About from '../components/About.jsx';
+import Ciudad from '../components/Ciudad.jsx';
 
-const apiKey = 'Aqui va la API key que creaste';
+
+//const apiKey = 'Aqui va la API key que creaste';
 
 function App() {
   const [cities, setCities] = useState([]);
-  function onClose(id) {
-    setCities(oldCities => oldCities.filter(c => c.id !== id));
-  }
+ 
   function onSearch(ciudad) {
     //Llamado a la API del clima
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${"55eb8a9161bac3791d7eed612317ac0b"}&units=metric`)
       .then(r => r.json())
       .then((recurso) => {
         if(recurso.main !== undefined){
@@ -44,17 +46,35 @@ function App() {
         return null;
     }
   }
+  function onClose(id) {
+    setCities(oldCities => oldCities.filter(c => c.id !== id));
+  }
   return (
+    
     <div className="App">
-      <Nav onSearch={onSearch}/>
-      <div>
-        <Cards
-          cities={cities}
-          onClose={onClose}
+      <Route path='/'>
+        <Nav onSearch={onSearch}/>{/* muestra siempre el componente Nav, por eso lo hago afuera del switch, una forma de forzar que siempre muestre el Nav */}
+      </Route>
+      <Switch>
+      <Route exact path='/ciudad/:ciudadId'
+          
+          render={({match}) => <Ciudad city={onFilter(match.params.ciudadId)}/>}
         />
-      </div>
-      <hr />
+        <Route exact path='/'>
+          <div>
+              <Cards
+              cities={cities}
+              onClose={onClose}
+              />
+          </div>
+        </Route>
+        <Route path='/about'>
+          <About/>
+        </Route>
+        
+     </Switch>
     </div>
+    
   );
 }
 

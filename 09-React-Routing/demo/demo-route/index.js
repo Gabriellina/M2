@@ -39,10 +39,10 @@ function Home() {
 
 
 const Root = (
-  <Router>
+  <Router>{/* Import {.... HashRouter as Router} envuelve todo */}
     <NavBar />
-    <Switch>
-      <Route path="/home">
+    <Switch> {/** switch case*/}
+      <Route path="/home">{/**Route es un componente que muestra la vista adecuada dependiendo del path que tenga. cambia segun como termina el URL */}
         <Home />
       </Route>
       <Route exact path="/exact">
@@ -78,7 +78,7 @@ const Root = (
       <Route path="/sensitive">
         <h2>No Sensitive</h2>
       </Route>
-      <Route path="/">
+      <Route path="/">{/** Siempre en el switch case tiene que haber un caso por default. Cuando el path empiece con / entra al h2 default, si no machea con ninguno termina en este*/}
         <h2>Default</h2>
       </Route>
     </Switch>

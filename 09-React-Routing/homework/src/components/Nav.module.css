@@ -1,0 +1,10 @@
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(96, 91, 91); 
+    margin-bottom: 5px;
+}
+.spanNavBar{
+    margin-left: 5px;
+    color: white;
+}
