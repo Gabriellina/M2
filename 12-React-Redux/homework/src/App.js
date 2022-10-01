@@ -1,3 +1,5 @@
+// hace el routeo ruteo
+
 import React from "react";
 
 import Favorites from "./components/Favorites/Favorites";
@@ -12,7 +14,7 @@ function App() {
           <NavBar />
           <Route exact path="/" component={Buscador} />
           <Route path="/favs" component={Favorites} />
-          <Route path="/movie/:id" component={Movie} />
+          <Route path="/movie/:id" component={Movie} /> {/* el componente Movie, me lo muestra en /movie/:id    pasa el param, history, location*/}
       </React.Fragment>
   );
 }
